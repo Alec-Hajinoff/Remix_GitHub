@@ -14,7 +14,7 @@ contract SimpleStorage {
 
     Person[] public listOfPeople;
 
-    Person public pat = Person({favoriteNumber: 7, name: "Pat"});
+    mapping (string => uint256) public nameToFavoriteNumber;
 
     function store(uint256 _favoriteNumber) public {
         myFavoriteNumber = _favoriteNumber;
@@ -26,6 +26,7 @@ contract SimpleStorage {
 
     function addPerson(string memory _name, uint256 _favoriteNumber) public {
         listOfPeople.push(Person(_favoriteNumber, _name));
+        nameToFavoriteNumber[_name] = _favoriteNumber;
     }
 }
 
@@ -36,28 +37,17 @@ contract SimpleStorage {
 
 
 //EXERCISES!
+/*
+contract SimpleStorageOne {
 
-contract AnimalsList {
+    mapping(address => uint256) public balance;
 
-    struct Animal {
-        string name;
+    function setBalance(uint256 _amount) public {
+        balance[msg.sender] = _amount; // Stores balance for the sender
     }
 
-    Animal[] public listOfAnimals;
-
-    constructor() {
-
-        listOfAnimals.push(Animal("Lion"));
-        listOfAnimals.push(Animal("Elephant"));
-        listOfAnimals.push(Animal("Giraffe"));
+    function getMyBalance() public view returns (uint256) {
+        return balance[msg.sender]; // Retrieves sender's balance
     }
-
-    function addAnimal(string memory _name) public {
-        listOfAnimals.push(Animal(_name));
-    }
-
-    function getAnimals() public view returns (Animal[] memory) {
-        return listOfAnimals;
-    }
-    
 }
+*/
