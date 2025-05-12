@@ -37,7 +37,7 @@ contract SimpleStorage {
 
 
 //EXERCISES!
-/*
+
 contract SimpleStorageOne {
 
     mapping(address => uint256) public balance;
@@ -50,4 +50,3 @@ contract SimpleStorageOne {
         return balance[msg.sender]; // Retrieves sender's balance
     }
 }
-*/
