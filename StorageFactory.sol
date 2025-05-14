@@ -1,10 +1,6 @@
-// I'm a comment!
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.0;
-
-// pragma solidity ^0.8.0;
-// pragma solidity >=0.8.0 <0.9.0;
 
 contract SimpleStorage {
     uint256 myFavoriteNumber;
@@ -32,8 +28,11 @@ contract SimpleStorage {
     }
 }
 
-contract SimpleStorage2 {}
+contract StorageFactory {
 
-contract SimpleStorage3 {}
+    SimpleStorage public simpleStorage;
 
-contract SimpleStorage4 {}
+    function createSimpleStorageContract() public  {
+        simpleStorage = new SimpleStorage();
+    }
+}
