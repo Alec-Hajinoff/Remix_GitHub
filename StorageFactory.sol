@@ -2,37 +2,25 @@
 
 pragma solidity ^0.8.0;
 
-contract SimpleStorage {
-    uint256 myFavoriteNumber;
-
-    struct Person {
-        uint256 favoriteNumber;
-        string name;
-    }
-    // uint256[] public anArray;
-    Person[] public listOfPeople;
-
-    mapping(string => uint256) public nameToFavoriteNumber;
-
-    function store(uint256 _favoriteNumber) public virtual {
-        myFavoriteNumber = _favoriteNumber;
-    }
-
-    function retrieve() public view returns (uint256) {
-        return myFavoriteNumber;
-    }
-
-    function addPerson(string memory _name, uint256 _favoriteNumber) public {
-        listOfPeople.push(Person(_favoriteNumber, _name));
-        nameToFavoriteNumber[_name] = _favoriteNumber;
-    }
-}
+import {SimpleStorage} from "./SimpleStorage.sol";
 
 contract StorageFactory {
 
-    SimpleStorage public simpleStorage;
+    SimpleStorage[] public listOfSimpleStorageContracts;
 
     function createSimpleStorageContract() public  {
-        simpleStorage = new SimpleStorage();
+
+        SimpleStorage newSimpleStorageContract = new SimpleStorage();
+        listOfSimpleStorageContracts.push(newSimpleStorageContract);
+    }
+
+    function sfStore(uint256 _simpleStorageIndex, uint256 _newSimpleStorageNumber) public {
+
+        //Address
+        //ABI - Application Binary Interface
+
+        SimpleStorage mySimpleStorage = listOfSimpleStorageContracts[_simpleStorageIndex];
+        mySimpleStorage.store(_newSimpleStorageNumber);
+
     }
 }
